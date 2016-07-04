@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>get json data from jax-rs</title>
+
+        <script src="jquery-1.11.3.min.js"></script>
+        <script type="text/javascript">
+            $(document)
+                    .ready(
+                            function () {
+
+                                getJsonExampleData(printJsonReturnData);
+
+                                function getJsonExampleData(callback) {
+                                    var data = {
+                                        "title": "Mr.",
+                                        "singer": "Bat Man"
+                                    };
+
+                                    $.ajax({
+                                        type: "post",
+                                        contentType: 'application/json',
+                                        dataType: "json",
+                                        url: "http://x.d.itp.dev.local:7003/RESTfulExample/rest/json/metallica/post",
+                                        data: JSON.stringify(data),
+                                        success: callback
+                                    });
+                                }
+
+                                function printJsonReturnData(data, textStatus, xhr) {
+                                    $('#addResultDiv').html(JSON.stringify(data));
+                                }
+
+                            }
+                    );
+        </script>
+    </head>
+
+    <body>
+        <div id="addResultDiv">Search Result will Appear here!</div>
+    </body>
+</html>
